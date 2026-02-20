@@ -1,0 +1,110 @@
+/* ═══════════════════════════════════════════════════
+   DRIVERS PAGE
+   ═══════════════════════════════════════════════════ */
+
+.page-content {
+  animation: fadeIn 0.5s ease;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.page-header h2 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--f1-white);
+  margin: 0 0 0.5rem;
+}
+
+.page-header .accent {
+  color: var(--f1-red);
+}
+
+.subtitle {
+  color: var(--f1-gray-300);
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin: 0 0 2rem;
+}
+
+/* ── Search ── */
+.search-container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.2rem;
+  color: var(--f1-gray-300);
+  pointer-events: none;
+  transition: color var(--transition-normal);
+  z-index: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.85rem 3rem 0.85rem 3.2rem;
+  border: 1px solid var(--f1-border);
+  border-radius: var(--radius-full);
+  background: var(--f1-surface);
+  color: var(--f1-off-white);
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(20px);
+}
+
+.search-input::placeholder {
+  color: var(--f1-gray-400);
+  font-weight: 300;
+}
+
+.search-input:focus {
+  border-color: var(--f1-red);
+  box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.1), var(--f1-shadow-md);
+}
+
+.search-wrapper:focus-within .search-icon {
+  color: var(--f1-red);
+}
+
+.clear-btn {
+  position: absolute;
+  right: 1rem;
+  background: var(--f1-gray-500);
+  border: none;
+  color: var(--f1-gray-200);
+  cursor: pointer;
+  font-size: 0.65rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.clear-btn:hover {
+  background: var(--f1-red);
+  color: var(--f1-white);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

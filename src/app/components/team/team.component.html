@@ -1,0 +1,15 @@
+<section class="team-section">
+  @if (players.length > 0) {
+    <div class="drivers-grid">
+      @for (player of players; track player.id) {
+        <app-driver-card [driver]="player"></app-driver-card>
+      }
+    </div>
+  } @else {
+    <div class="no-results">
+      <div class="no-results-icon">🏎️</div>
+      <h2>No se encontraron pilotos</h2>
+      <p>Intenta con otro nombre de piloto</p>
+    </div>
+  }
+</section>

@@ -1,0 +1,351 @@
+/* ═══════════════════════════════════════════════════
+   DRIVER CARD - F1 OFFICIAL STYLE
+   ═══════════════════════════════════════════════════ */
+
+.driver-card {
+  background: var(--f1-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--f1-border);
+  border-top: 3px solid var(--team-color, var(--f1-red));
+  padding: 1.5rem;
+  color: var(--f1-white);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-bounce);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--f1-shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Hover gradient overlay */
+.driver-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    transparent 40%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Team color accent glow behind card */
+.driver-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 50% 0%,
+    color-mix(in srgb, var(--team-color) 8%, transparent) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.driver-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow:
+    var(--f1-shadow-lg),
+    0 0 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--f1-border-hover);
+}
+
+.driver-card:hover::before,
+.driver-card:hover::after {
+  opacity: 1;
+}
+
+/* ── Card Header (Number + Status) ── */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.driver-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--team-color);
+  line-height: 0.85;
+  opacity: 0.8;
+  transition: all var(--transition-normal);
+}
+
+.driver-card:hover .driver-number {
+  color: var(--team-color);
+  -webkit-text-stroke: 0;
+  opacity: 1;
+  transform: scale(1.05);
+  text-shadow: 0 0 20px color-mix(in srgb, var(--team-color) 40%, transparent);
+}
+
+/* ── Status Badge ── */
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-full);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.status-badge.available {
+  background: rgba(0, 210, 80, 0.1);
+  border: 1px solid rgba(0, 210, 80, 0.25);
+  color: #00E856;
+}
+
+.status-badge.unavailable {
+  background: rgba(255, 50, 50, 0.1);
+  border: 1px solid rgba(255, 50, 50, 0.25);
+  color: #FF4444;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-badge.available .status-dot {
+  background: #00E856;
+  box-shadow: 0 0 6px rgba(0, 232, 86, 0.6);
+  animation: pulse-status 2s ease-in-out infinite;
+}
+
+.status-badge.unavailable .status-dot {
+  background: #FF4444;
+  box-shadow: 0 0 6px rgba(255, 68, 68, 0.5);
+}
+
+@keyframes pulse-status {
+  0%, 100% { box-shadow: 0 0 4px rgba(0, 232, 86, 0.3); }
+  50% { box-shadow: 0 0 10px rgba(0, 232, 86, 0.7); }
+}
+
+/* ── Driver Image ── */
+.driver-image-container {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 0.3rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+/* Subtle gradient at the bottom of the image */
+.driver-image-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, var(--f1-carbon-light), transparent);
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.driver-image {
+  height: 105%;
+  width: auto;
+  max-width: 120%;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  position: relative;
+  z-index: 1;
+}
+
+.driver-card:hover .driver-image {
+  transform: scale(1.08) translateY(-6px);
+}
+
+/* Full-body (.webp) images: crop to show only upper body */
+.driver-image.fullbody {
+  object-fit: cover;
+  object-position: top;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ── Card Info ── */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 2;
+  position: relative;
+}
+
+.driver-name {
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.first-name {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--f1-gray-200);
+  letter-spacing: 1.5px;
+}
+
+.last-name {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.5px;
+  color: var(--f1-white);
+}
+
+/* ── Team Name ── */
+.team-name {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.team-name::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--team-color);
+  border-radius: 1px;
+  box-shadow: 0 0 6px color-mix(in srgb, var(--team-color) 50%, transparent);
+}
+
+/* ── Position Badge ── */
+.position-badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--f1-border);
+  color: var(--f1-gray-200);
+  margin-bottom: 0.6rem;
+}
+
+/* ── Stats Grid ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.7rem 0.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--f1-border);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.stat-value {
+  font-size: 1.15rem;
+  font-family: var(--font-display);
+  color: var(--f1-off-white);
+}
+
+.stat-label {
+  font-size: 0.5rem;
+  color: var(--f1-gray-300);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 600;
+}
+
+/* ── Convocar Button ── */
+.convocar-btn {
+  width: 100%;
+  padding: 0.7rem 1.5rem;
+  margin-top: 0.6rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.convocar-btn:not(:disabled) {
+  background: linear-gradient(135deg,
+    var(--team-color, var(--f1-red)) 0%,
+    color-mix(in srgb, var(--team-color, var(--f1-red)) 70%, black) 100%
+  );
+  color: var(--f1-white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.convocar-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.5),
+    0 0 20px color-mix(in srgb, var(--team-color) 25%, transparent);
+  filter: brightness(1.15);
+}
+
+.convocar-btn:not(:disabled):active {
+  transform: translateY(0);
+  filter: brightness(0.95);
+}
+
+.convocar-btn:disabled {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--f1-gray-400);
+  cursor: not-allowed;
+  border: 1px solid var(--f1-border);
+}

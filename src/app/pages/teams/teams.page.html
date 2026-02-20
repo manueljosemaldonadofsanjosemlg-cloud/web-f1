@@ -1,0 +1,12 @@
+<div class="page-content">
+  <div class="page-header">
+    <h2>EQUIPOS <span class="accent">2026</span></h2>
+    <p class="subtitle">Las 11 escuderías que compiten en el Campeonato Mundial de Fórmula 1</p>
+  </div>
+
+  <div class="teams-grid">
+    @for (team of teams; track team.id) {
+      <app-team-card [team]="team"></app-team-card>
+    }
+  </div>
+</div>

@@ -1,0 +1,218 @@
+/* ═══════════════════════════════════════════════════
+   TEAM CARD - F1 STYLE
+   ═══════════════════════════════════════════════════ */
+
+.team-card {
+  background: var(--f1-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--f1-border);
+  overflow: hidden;
+  color: var(--f1-white);
+  position: relative;
+  transition: all var(--transition-bounce);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--f1-shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    color-mix(in srgb, var(--team-color) 6%, transparent) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.team-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--f1-shadow-lg);
+  border-color: var(--f1-border-hover);
+}
+
+.team-card:hover::after {
+  opacity: 1;
+}
+
+/* ── Accent Bar ── */
+.team-accent {
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--team-color),
+    color-mix(in srgb, var(--team-color) 60%, white)
+  );
+  box-shadow: 0 0 15px color-mix(in srgb, var(--team-color) 40%, transparent);
+}
+
+/* ── Header ── */
+.team-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.team-logo-container {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  border: 1px solid var(--f1-border);
+  flex-shrink: 0;
+}
+
+.team-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  transition: opacity var(--transition-normal);
+}
+
+.team-card:hover .team-logo {
+  opacity: 1;
+}
+
+.team-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.team-name {
+  font-family: var(--font-primary);
+  font-size: 1.3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+  font-style: italic;
+}
+
+.team-base {
+  font-size: 0.7rem;
+  color: var(--f1-gray-300);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* ── Info Rows ── */
+.team-info {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--f1-border);
+}
+
+.info-label {
+  font-size: 0.7rem;
+  color: var(--f1-gray-300);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 0.85rem;
+  color: var(--f1-off-white);
+  font-weight: 600;
+}
+
+/* ── Drivers ── */
+.team-drivers {
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.drivers-label {
+  font-size: 0.6rem;
+  color: var(--f1-gray-400);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.drivers-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.driver-chip {
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--team-color) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--team-color) 30%, transparent);
+  color: var(--team-color);
+  letter-spacing: 0.3px;
+}
+
+/* ── Stats ── */
+.team-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1rem 1.5rem 1.5rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--f1-border);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.stat {
+  padding: 0.8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stat:first-child {
+  border-right: 1px solid var(--f1-border);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--f1-off-white);
+}
+
+.stat-label {
+  font-size: 0.6rem;
+  color: var(--f1-gray-300);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}

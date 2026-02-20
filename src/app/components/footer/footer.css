@@ -1,0 +1,37 @@
+/* ═══════════════════════════════════════════════════
+   FOOTER - F1 OFFICIAL STYLE
+   ═══════════════════════════════════════════════════ */
+
+.f1-footer {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 0.8rem;
+  color: var(--f1-gray-400);
+  padding: 2.5rem 0;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.f1-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--f1-gray-500) 30%,
+    var(--f1-gray-400) 50%,
+    var(--f1-gray-500) 70%,
+    transparent
+  );
+}
+
+.f1-footer p {
+  margin: 0;
+}

@@ -1,0 +1,54 @@
+<div class="team-card" [style.--team-color]="team.color">
+  <!-- Team color accent bar -->
+  <div class="team-accent"></div>
+
+  <!-- Logo + Name -->
+  <div class="team-header">
+    <div class="team-logo-container">
+      <img
+        [src]="team.logo"
+        [alt]="team.name"
+        class="team-logo"
+        onerror="this.style.display='none'"
+      />
+    </div>
+    <div class="team-title">
+      <h3 class="team-name">{{ team.name }}</h3>
+      <span class="team-base">📍 {{ team.base }}</span>
+    </div>
+  </div>
+
+  <!-- Info Grid -->
+  <div class="team-info">
+    <div class="info-row">
+      <span class="info-label">Jefe de Equipo</span>
+      <span class="info-value">{{ team.teamPrincipal }}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Unidad de Potencia</span>
+      <span class="info-value">{{ team.powerUnit }}</span>
+    </div>
+  </div>
+
+  <!-- Drivers -->
+  <div class="team-drivers">
+    <span class="drivers-label">PILOTOS</span>
+    <div class="drivers-list">
+      @for (driver of team.drivers; track driver) {
+        <span class="driver-chip">{{ driver }}</span>
+      }
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="team-stats">
+    <div class="stat">
+      <span class="stat-number">{{ team.championships }}</span>
+      <span class="stat-label">🏆 Títulos</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">{{ team.wins }}</span>
+      <span class="stat-label">🏁 Victorias</span>
+    </div>
+  </div>
+</div>

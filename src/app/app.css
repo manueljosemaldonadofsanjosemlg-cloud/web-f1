@@ -1,0 +1,61 @@
+/* ═══════════════════════════════════════════════════
+   APP CONTAINER - F1 CARBON BACKGROUND
+   ═══════════════════════════════════════════════════ */
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg,
+      rgba(21, 21, 30, 0.97) 0%,
+      rgba(21, 21, 30, 0.92) 50%,
+      rgba(21, 21, 30, 0.97) 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.01) 2px,
+      rgba(255, 255, 255, 0.01) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.01) 2px,
+      rgba(255, 255, 255, 0.01) 4px
+    );
+  position: relative;
+}
+
+/* Subtle top red accent line */
+:host::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--f1-red) 20%,
+    var(--f1-red-light) 50%,
+    var(--f1-red) 80%,
+    transparent 100%
+  );
+  z-index: 1000;
+  box-shadow: 0 0 20px var(--f1-red-glow), 0 0 60px rgba(225, 6, 0, 0.15);
+}
+
+.f1-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .f1-container {
+    padding: 1.5rem 1rem;
+  }
+}

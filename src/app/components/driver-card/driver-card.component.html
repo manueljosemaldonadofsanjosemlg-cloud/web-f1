@@ -1,0 +1,44 @@
+<div class="driver-card" [style.--team-color]="driver.teamColor">
+  <div class="card-header">
+    <span class="driver-number">{{ driver.number }}</span>
+    <div class="status-badge" [class.available]="driver.status === 'Disponible'" [class.unavailable]="driver.status !== 'Disponible'">
+      <span class="status-dot"></span>
+      {{ driver.status }}
+    </div>
+  </div>
+
+  <div class="driver-image-container">
+    <img
+      [src]="driver.image"
+      [alt]="driver.name"
+      class="driver-image"
+      [class.fullbody]="driver.image.endsWith('.webp')"
+      onerror="this.src='https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png'"
+    />
+  </div>
+
+  <div class="card-info">
+    <div class="driver-name">
+      <span class="first-name">{{ driver.name.split(' ')[0] }}</span>
+      <span class="last-name">{{ driver.name.split(' ').slice(1).join(' ') }}</span>
+    </div>
+    <div class="team-name" [style.color]="driver.teamColor">{{ driver.team }}</div>
+    <div class="position-badge">{{ driver.position }}</div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-value">{{ driver.stats.worldChampionships }}</span>
+        <span class="stat-label">TÍTULOS</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{{ driver.stats.wins }}</span>
+        <span class="stat-label">VICTORIAS</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{{ driver.stats.podiums }}</span>
+        <span class="stat-label">PODIOS</span>
+      </div>
+    </div>
+
+  </div>
+</div>
