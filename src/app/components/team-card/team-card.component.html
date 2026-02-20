@@ -9,7 +9,8 @@
         [src]="team.logo"
         [alt]="team.name"
         class="team-logo"
-        onerror="this.style.display='none'"
+        #logoImg
+        (error)="logoImg.src = 'https://www.formula1.com/etc/designs/fom-website/images/f1_logo.svg'"
       />
     </div>
     <div class="team-title">
