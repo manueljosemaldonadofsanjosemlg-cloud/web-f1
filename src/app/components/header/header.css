@@ -131,8 +131,15 @@ h1 {
     height: 38px;
   }
 
+  .nav-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: var(--radius-md);
+  }
+
   .nav-tab {
-    padding: 0.5rem 1rem;
-    font-size: 0.7rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.8px;
   }
 }
