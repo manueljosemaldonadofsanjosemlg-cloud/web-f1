@@ -158,26 +158,16 @@
   margin-bottom: 0.3rem;
   position: relative;
   z-index: 1;
-  overflow: hidden;
+  overflow: hidden; /* Restaurado para que el difuminado inferior se vea bien */
   border-radius: var(--radius-md);
 }
 
-/* Subtle gradient at the bottom of the image */
 .driver-image-container::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40%;
-  background: linear-gradient(to top, var(--f1-carbon-light), transparent);
-  pointer-events: none;
-  z-index: 2;
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  display: none;
 }
 
 .driver-image {
-  height: 105%;
+  height: 95%;
   width: auto;
   max-width: 120%;
   object-fit: contain;
@@ -185,10 +175,13 @@
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
   position: relative;
   z-index: 1;
+  /* Máscara para fundir la parte inferior */
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
 }
 
 .driver-card:hover .driver-image {
-  transform: scale(1.08) translateY(-6px);
+  transform: scale(1.05);
 }
 
 /* Full-body (.webp) images: crop to show only upper body */
