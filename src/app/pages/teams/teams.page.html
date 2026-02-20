@@ -6,7 +6,17 @@
 
   <div class="teams-grid">
     @for (team of teams; track team.id) {
-      <app-team-card [team]="team"></app-team-card>
+      <app-team-card [team]="team" (driverSelected)="selectDriver($event)"></app-team-card>
     }
   </div>
+
+  <!-- Modal del Piloto -->
+  @if (selectedDriver) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="modal-close" (click)="closeModal()">×</button>
+        <app-driver-card [driver]="selectedDriver"></app-driver-card>
+      </div>
+    </div>
+  }
 </div>

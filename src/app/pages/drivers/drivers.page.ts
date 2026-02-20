@@ -28,10 +28,32 @@ export class DriversPage implements OnInit {
       this.filteredPlayers = this.allPlayers;
     } else {
       const term = this.searchTerm.toLowerCase().trim();
-      this.filteredPlayers = this.allPlayers.filter(player =>
-        player.name.toLowerCase().includes(term) ||
-        player.team.toLowerCase().includes(term)
-      );
+      
+      const countryNames: { [key: string]: string } = {
+        'GB': 'gran bretaña reino unido england inglaterra uk',
+        'ES': 'españa spain',
+        'NL': 'países bajos holanda netherlands',
+        'MC': 'mónaco monaco',
+        'MX': 'méxico mexico',
+        'FR': 'francia france',
+        'TH': 'tailandia thailand',
+        'AU': 'australia',
+        'NZ': 'nueva zelanda new zealand',
+        'IT': 'italia italy',
+        'DE': 'alemania germany',
+        'BR': 'brasil brazil',
+        'FI': 'finlandia finland',
+        'AR': 'argentina',
+        'CA': 'canadá canada'
+      };
+
+      this.filteredPlayers = this.allPlayers.filter(player => {
+        const countryMatch = (countryNames[player.country] || '').toLowerCase();
+        return player.name.toLowerCase().includes(term) ||
+               player.team.toLowerCase().includes(term) ||
+               player.country.toLowerCase().includes(term) ||
+               countryMatch.includes(term);
+      });
     }
   }
 }

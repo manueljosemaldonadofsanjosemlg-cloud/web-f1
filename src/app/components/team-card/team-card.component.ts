@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Team } from '../../interfaces/team.interface';
 
 @Component({
@@ -10,4 +10,9 @@ import { Team } from '../../interfaces/team.interface';
 })
 export class TeamCardComponent {
   @Input() team!: Team;
+  @Output() driverSelected = new EventEmitter<string>();
+
+  onDriverClick(driverName: string): void {
+    this.driverSelected.emit(driverName);
+  }
 }

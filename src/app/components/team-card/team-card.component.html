@@ -2,6 +2,15 @@
   <!-- Team color accent bar -->
   <div class="team-accent"></div>
 
+  <!-- Bandera integrada en el fondo -->
+  <div class="country-flag-background">
+    <img 
+      [src]="'https://flagcdn.com/w160/' + team.country.toLowerCase() + '.png'" 
+      [alt]="team.country"
+      class="bg-flag-img"
+    />
+  </div>
+
   <!-- Logo + Name -->
   <div class="team-header">
     <div class="team-logo-container">
@@ -15,7 +24,7 @@
     </div>
     <div class="team-title">
       <h3 class="team-name">{{ team.name }}</h3>
-      <span class="team-base">📍 {{ team.base }}</span>
+      <span class="team-base">🏭 Fábrica: {{ team.base }}</span>
     </div>
   </div>
 
@@ -36,7 +45,7 @@
     <span class="drivers-label">PILOTOS</span>
     <div class="drivers-list">
       @for (driver of team.drivers; track driver) {
-        <span class="driver-chip">{{ driver }}</span>
+        <span class="driver-tag" (click)="onDriverClick(driver)">{{ driver }}</span>
       }
     </div>
   </div>

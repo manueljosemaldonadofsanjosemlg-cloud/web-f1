@@ -144,6 +144,47 @@
   box-shadow: 0 0 6px rgba(255, 68, 68, 0.5);
 }
 
+/* ── Country Badge ── */
+/* ── Country Flag Background ── */
+.country-flag-background {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  width: 240px; /* Más grande */
+  opacity: 0.25; /* Más visible */
+  pointer-events: none;
+  z-index: 0;
+  transition: all var(--transition-bounce);
+  filter: brightness(1.1) saturate(1.2); /* Colores vivos pero sutiles */
+}
+
+.driver-card:hover .country-flag-background {
+  opacity: 0.4; /* Resalta más al pasar el ratón */
+  transform: translate(-50%, -52%) scale(1.05) rotate(-3deg);
+  filter: brightness(1.2) saturate(1.5);
+}
+
+.bg-flag-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mask-image: radial-gradient(circle, black 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle, black 0%, transparent 80%);
+}
+
+.country-name-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @keyframes pulse-status {
   0%, 100% { box-shadow: 0 0 4px rgba(0, 232, 86, 0.3); }
   50% { box-shadow: 0 0 10px rgba(0, 232, 86, 0.7); }

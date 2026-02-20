@@ -302,6 +302,7 @@ export class TeamService {
       color: '#E8002D',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2025/ferrari/2025ferrarilogo.webp',
       base: 'Maranello, Italia',
+      country: 'IT',
       teamPrincipal: 'Frédéric Vasseur',
       powerUnit: 'Ferrari',
       drivers: ['Charles Leclerc', 'Lewis Hamilton'],
@@ -314,6 +315,7 @@ export class TeamService {
       color: '#FF8000',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2025/mclaren/2025mclarenlogo.webp',
       base: 'Woking, Reino Unido',
+      country: 'GB',
       teamPrincipal: 'Andrea Stella',
       powerUnit: 'Mercedes',
       drivers: ['Lando Norris', 'Oscar Piastri'],
@@ -326,6 +328,7 @@ export class TeamService {
       color: '#3671C6',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2025/redbullracing/2025redbullracinglogo.webp',
       base: 'Milton Keynes, Reino Unido',
+      country: 'AT',
       teamPrincipal: 'Christian Horner',
       powerUnit: 'Honda RBPT',
       drivers: ['Max Verstappen', 'Isack Hadjar'],
@@ -338,6 +341,7 @@ export class TeamService {
       color: '#27F4D2',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2025/mercedes/2025mercedeslogowhite.webp',
       base: 'Brackley, Reino Unido',
+      country: 'DE',
       teamPrincipal: 'Toto Wolff',
       powerUnit: 'Mercedes',
       drivers: ['George Russell', 'Kimi Antonelli'],
@@ -350,6 +354,7 @@ export class TeamService {
       color: '#229971',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2025/astonmartin/2025astonmartinlogowhite.webp',
       base: 'Silverstone, Reino Unido',
+      country: 'GB',
       teamPrincipal: 'Andy Cowell',
       powerUnit: 'Honda',
       drivers: ['Fernando Alonso', 'Lance Stroll'],
@@ -362,6 +367,7 @@ export class TeamService {
       color: '#FF87BC',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2025/alpine/2025alpinelogowhite.webp',
       base: 'Enstone, Reino Unido',
+      country: 'FR',
       teamPrincipal: 'Oliver Oakes',
       powerUnit: 'Mercedes',
       drivers: ['Pierre Gasly', 'Franco Colapinto'],
@@ -374,6 +380,7 @@ export class TeamService {
       color: '#64C4FF',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2025/williams/2025williamslogowhite.webp',
       base: 'Grove, Reino Unido',
+      country: 'GB',
       teamPrincipal: 'James Vowles',
       powerUnit: 'Mercedes',
       drivers: ['Alexander Albon', 'Carlos Sainz'],
@@ -386,6 +393,7 @@ export class TeamService {
       color: '#6692FF',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2025/racingbulls/2025racingbullslogowhite.webp',
       base: 'Faenza, Italia',
+      country: 'IT',
       teamPrincipal: 'Laurent Mekies',
       powerUnit: 'Honda RBPT',
       drivers: ['Liam Lawson', 'Arvid Lindblad'],
@@ -398,6 +406,7 @@ export class TeamService {
       color: '#FF0000',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2026/audi/2026audilogowhite.webp',
       base: 'Neuburg an der Donau, Alemania',
+      country: 'DE',
       teamPrincipal: 'Mattia Binotto',
       powerUnit: 'Audi',
       drivers: ['Nico Hulkenberg', 'Gabriel Bortoleto'],
@@ -410,6 +419,7 @@ export class TeamService {
       color: '#B6BABD',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2025/haas/2025haaslogowhite.webp',
       base: 'Kannapolis, EE.UU.',
+      country: 'US',
       teamPrincipal: 'Ayao Komatsu',
       powerUnit: 'Ferrari',
       drivers: ['Esteban Ocon', 'Oliver Bearman'],
@@ -422,6 +432,7 @@ export class TeamService {
       color: '#C0A44D',
       logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000000/common/f1/2026/cadillac/2026cadillaclogowhite.webp',
       base: 'Charlotte, EE.UU.',
+      country: 'US',
       teamPrincipal: 'Graeme Lowdon',
       powerUnit: 'Ferrari',
       drivers: ['Sergio Perez', 'Valtteri Bottas'],
@@ -436,5 +447,9 @@ export class TeamService {
 
   getTeams(): Team[] {
     return this.teams;
+  }
+
+  getPlayerByName(name: string): Player | undefined {
+    return this.players.find(p => p.name.toLowerCase() === name.toLowerCase());
   }
 }

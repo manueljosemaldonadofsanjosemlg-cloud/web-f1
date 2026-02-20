@@ -1,4 +1,14 @@
 <div class="driver-card" [style.--team-color]="driver.teamColor">
+  <!-- Bandera integrada en el fondo -->
+  <div class="country-flag-background">
+    <img 
+      [src]="'https://flagcdn.com/w160/' + driver.country.toLowerCase() + '.png'" 
+      [alt]="driver.country"
+      class="bg-flag-img"
+    />
+    <span class="country-name-hidden">{{ getCountryName(driver.country) }}</span>
+  </div>
+
   <div class="card-header">
     <span class="driver-number">{{ driver.number }}</span>
     <div class="status-badge" [class.available]="driver.status === 'Disponible'" [class.unavailable]="driver.status !== 'Disponible'">
@@ -39,6 +49,5 @@
         <span class="stat-label">PODIOS</span>
       </div>
     </div>
-
   </div>
 </div>
