@@ -2,7 +2,7 @@
   @if (players.length > 0) {
     <div class="drivers-grid">
       @for (player of players; track player.id) {
-        <app-driver-card [driver]="player"></app-driver-card>
+        <app-driver-card [driver]="player" (cardClicked)="openModal($event)"></app-driver-card>
       }
     </div>
   } @else {
@@ -13,3 +13,10 @@
     </div>
   }
 </section>
+
+@if (selectedDriver) {
+  <app-driver-modal
+    [driver]="selectedDriver"
+    (closeModal)="closeModal()"
+  ></app-driver-modal>
+}

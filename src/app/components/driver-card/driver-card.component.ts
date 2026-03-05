@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Player } from '../../interfaces/player.interface';
 
 @Component({
@@ -10,10 +10,10 @@ import { Player } from '../../interfaces/player.interface';
 })
 export class DriverCardComponent {
   @Input() driver!: Player;
+  @Output() cardClicked = new EventEmitter<Player>();
 
-  convocar(): void {
-    alert(`🏁 Has convocado a ${this.driver.name}`);
-    console.log(`Has convocado a ${this.driver.name}`);
+  onCardClick(): void {
+    this.cardClicked.emit(this.driver);
   }
 
   getFlagEmoji(countryCode: string): string {

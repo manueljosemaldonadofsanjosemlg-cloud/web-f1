@@ -1,0 +1,98 @@
+<!-- Backdrop -->
+<div class="modal-backdrop" (click)="close()"></div>
+
+<!-- Modal Card -->
+<div class="modal-card" [style.--team-color]="driver.teamColor" role="dialog" aria-modal="true">
+
+  <!-- Close Button -->
+  <button class="modal-close" (click)="close()" aria-label="Cerrar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
+  <!-- Flag background -->
+  <div class="modal-flag-bg">
+    <img
+      [src]="'https://flagcdn.com/w320/' + driver.country.toLowerCase() + '.png'"
+      [alt]="driver.country"
+      class="modal-flag-img"
+    />
+  </div>
+
+  <!-- Team color bar top -->
+  <div class="modal-top-bar"></div>
+
+  <!-- Driver Image + Number -->
+  <div class="modal-hero">
+    <div class="modal-number">{{ driver.number }}</div>
+    <div class="modal-image-wrap">
+      <img
+        [src]="driver.image"
+        [alt]="driver.name"
+        class="modal-driver-img"
+        [class.fullbody]="driver.image.endsWith('.webp')"
+        onerror="this.src='https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png'"
+      />
+    </div>
+  </div>
+
+  <!-- Driver Info -->
+  <div class="modal-body">
+
+    <!-- Name, Team, Flag -->
+    <div class="modal-identity">
+      <div class="modal-name">
+        <span class="modal-firstname">{{ driver.name.split(' ')[0] }}</span>
+        <span class="modal-lastname">{{ driver.name.split(' ').slice(1).join(' ') }}</span>
+      </div>
+      <div class="modal-meta">
+        <span class="modal-team" [style.color]="driver.teamColor">{{ driver.team }}</span>
+        <span class="modal-dot">·</span>
+        <span class="modal-country">
+          {{ getFlagEmoji(driver.country) }} {{ getCountryName(driver.country) }}
+        </span>
+        <span class="modal-status-badge" [class.available]="driver.status === 'Disponible'" [class.unavailable]="driver.status !== 'Disponible'">
+          <span class="status-dot"></span>{{ driver.status }}
+        </span>
+      </div>
+      <span class="modal-position-tag">{{ driver.position }}</span>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="modal-stats">
+      <div class="modal-stat">
+        <span class="modal-stat-value">{{ driver.stats.worldChampionships }}</span>
+        <span class="modal-stat-label">Títulos</span>
+      </div>
+      <div class="modal-stat-divider"></div>
+      <div class="modal-stat">
+        <span class="modal-stat-value">{{ driver.stats.wins }}</span>
+        <span class="modal-stat-label">Victorias</span>
+      </div>
+      <div class="modal-stat-divider"></div>
+      <div class="modal-stat">
+        <span class="modal-stat-value">{{ driver.stats.podiums }}</span>
+        <span class="modal-stat-label">Podios</span>
+      </div>
+      <div class="modal-stat-divider"></div>
+      <div class="modal-stat">
+        <span class="modal-stat-value">{{ driver.stats.points | number:'1.0-0' }}</span>
+        <span class="modal-stat-label">Puntos</span>
+      </div>
+    </div>
+
+    <!-- Bio -->
+    @if (driver.bio) {
+      <div class="modal-bio-section">
+        <h4 class="modal-bio-title">
+          <span class="bio-icon">📖</span> Historial F1
+        </h4>
+        <p class="modal-bio-text">{{ driver.bio }}</p>
+      </div>
+    }
+
+  </div>
+</div>

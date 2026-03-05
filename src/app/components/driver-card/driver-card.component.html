@@ -1,4 +1,4 @@
-<div class="driver-card" [style.--team-color]="driver.teamColor">
+<div class="driver-card" [style.--team-color]="driver.teamColor" (click)="onCardClick()" role="button" tabindex="0" (keydown.enter)="onCardClick()" [attr.aria-label]="'Ver perfil de ' + driver.name">
   <!-- Bandera integrada en el fondo -->
   <div class="country-flag-background">
     <img 

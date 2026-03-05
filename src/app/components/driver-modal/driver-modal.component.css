@@ -1,0 +1,400 @@
+/* ═══════════════════════════════════════════════════
+   DRIVER MODAL - F1 STYLE
+   ═══════════════════════════════════════════════════ */
+
+/* Backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 900;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ── Modal Card ── */
+.modal-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 901;
+  width: min(92vw, 520px);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--f1-carbon-light);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--f1-border-hover);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 60px color-mix(in srgb, var(--team-color) 12%, transparent);
+  color: var(--f1-white);
+  animation: slideUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  scrollbar-width: thin;
+  scrollbar-color: var(--f1-gray-500) transparent;
+}
+
+.modal-card::-webkit-scrollbar {
+  width: 4px;
+}
+.modal-card::-webkit-scrollbar-thumb {
+  background: var(--f1-gray-500);
+  border-radius: 2px;
+}
+
+/* ── Top color bar ── */
+.modal-top-bar {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--team-color) 0%,
+    color-mix(in srgb, var(--team-color) 50%, transparent) 100%
+  );
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+/* ── Close Button ── */
+.modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--f1-border-hover);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--f1-gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+  background: rgba(225, 6, 0, 0.15);
+  border-color: var(--f1-red);
+  color: var(--f1-white);
+  transform: scale(1.1) rotate(90deg);
+}
+
+/* ── Flag background ── */
+.modal-flag-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 280px;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.modal-flag-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.07;
+  filter: blur(2px) saturate(1.5);
+  transform: scale(1.05);
+}
+
+/* ── Hero section (image + number) ── */
+.modal-hero {
+  position: relative;
+  height: 260px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 4px; /* space for top bar */
+}
+
+.modal-number {
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 6rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px color-mix(in srgb, var(--team-color) 60%, transparent);
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+.modal-image-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.modal-driver-img {
+  height: 95%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+  -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+}
+
+.modal-driver-img.fullbody {
+  object-fit: cover;
+  object-position: top center;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  filter: none;
+}
+
+/* ── Body ── */
+.modal-body {
+  padding: 1.5rem 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 5;
+  background: linear-gradient(180deg, transparent 0%, var(--f1-carbon-light) 24px);
+}
+
+/* ── Identity ── */
+.modal-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.modal-name {
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.modal-firstname {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--f1-gray-200);
+  letter-spacing: 2px;
+}
+
+.modal-lastname {
+  display: block;
+  font-size: 2.4rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -1px;
+  color: var(--f1-white);
+  line-height: 1;
+}
+
+.modal-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.modal-team {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.modal-dot {
+  color: var(--f1-gray-400);
+}
+
+.modal-country {
+  font-size: 0.8rem;
+  color: var(--f1-gray-200);
+}
+
+.modal-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-left: 0.25rem;
+}
+
+.modal-status-badge.available {
+  background: rgba(0, 210, 80, 0.1);
+  border: 1px solid rgba(0, 210, 80, 0.25);
+  color: #00e856;
+}
+
+.modal-status-badge.unavailable {
+  background: rgba(255, 50, 50, 0.1);
+  border: 1px solid rgba(255, 50, 50, 0.25);
+  color: #ff4444;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.modal-status-badge.available .status-dot {
+  background: #00e856;
+  box-shadow: 0 0 6px rgba(0, 232, 86, 0.6);
+  animation: pulse-status 2s ease-in-out infinite;
+}
+
+.modal-status-badge.unavailable .status-dot {
+  background: #ff4444;
+}
+
+@keyframes pulse-status {
+  0%,
+  100% {
+    box-shadow: 0 0 4px rgba(0, 232, 86, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 232, 86, 0.7);
+  }
+}
+
+.modal-position-tag {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--f1-border-hover);
+  color: var(--f1-gray-200);
+}
+
+/* ── Stats Row ── */
+.modal-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--f1-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  gap: 0.5rem;
+}
+
+.modal-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.modal-stat-value {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--f1-white);
+  line-height: 1;
+  background: linear-gradient(
+    to bottom,
+    var(--f1-white) 0%,
+    color-mix(in srgb, var(--team-color) 60%, var(--f1-white)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modal-stat-label {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--f1-gray-300);
+  font-weight: 600;
+}
+
+.modal-stat-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--f1-border-hover);
+  flex-shrink: 0;
+}
+
+/* ── Bio Section ── */
+.modal-bio-section {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--f1-border);
+  border-left: 3px solid var(--team-color);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.1rem 1.25rem;
+}
+
+.modal-bio-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--f1-gray-300);
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bio-icon {
+  font-size: 0.9rem;
+}
+
+.modal-bio-text {
+  font-size: 0.88rem;
+  line-height: 1.72;
+  color: var(--f1-gray-100);
+  font-weight: 300;
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -44%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}

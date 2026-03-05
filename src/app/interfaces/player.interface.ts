@@ -16,4 +16,5 @@ export interface Player {
   position: string;       // e.g., 'Piloto Titular', 'Piloto Reserva', 'Rookie'
   status: 'Disponible' | 'Lesionado' | 'Sancionado';
   stats: PlayerStats;
+  bio?: string;
 }
